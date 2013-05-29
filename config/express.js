@@ -1,6 +1,5 @@
 var express = require('express')
   , mongoStore = require('connect-mongo')(express)
-  , moment = require('moment')
 
 module.exports = function (app, config) {
   app.set('showStackError', true)
@@ -11,16 +10,6 @@ module.exports = function (app, config) {
   app.set('view engine', 'jade')
 
   app.configure(function () {
-    // helpers
-    app.helpers({
-      date: function(date){
-        moment(date).format('YYYY-MM-DD hh:mm:ss');
-      },
-      fromNow: function(date){
-        moment(date).fromNow()
-      }
-    })
-
     // bodyParser should be above methodOverride
     app.use(express.bodyParser())
     app.use(express.methodOverride())
