@@ -1,0 +1,22 @@
+ul.nav.nav-list
+  li.nav-header Operations Management
+  - if (path == '/ops')
+    li
+      a(href='/ops/new') Registration
+  - else
+    li
+      a(href='/ops')
+        i.icon-chevron-left
+        | Back
+    - if (operation && !operation.isNew)
+      li
+        a(href='/ops/' + operation.id + '/edit')
+          i.icon-edit
+          | Edit Operation
+    - if (path.indexOf('edit') !== -1)
+      form(action='/ops/' + operation.id, method='post')
+        input(type='hidden', name='_method', value='DELETE')
+        li
+          a(href="#", onclick="$(this).parents('form:first').submit()")
+            i.icon-trash
+            | Delete Operation

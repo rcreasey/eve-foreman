@@ -1,0 +1,16 @@
+extends ../layouts/operations
+
+block content
+  h1= title
+
+  table.table.table-striped
+    thead
+      tr
+        th System
+        th Date
+    tbody
+      each operation in operations
+        tr
+          td
+            a.title(href='/ops/' + operation._id)= operation.system
+          td= operation.starts_at

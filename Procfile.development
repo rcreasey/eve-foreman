@@ -1,2 +1,3 @@
-web: node server.js
-mongod: mongod
+web: node --debug server.js NODE_ENV=development
+db: mongod
+debugger: node-inspector

@@ -4,6 +4,7 @@ var express = require('express')
   , mongoose = require('mongoose')
   , modelsPath = __dirname + '/app/models'
 
+
 mongoose.connect(config.db)
 
 // Bootstrap models

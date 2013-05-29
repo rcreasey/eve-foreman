@@ -7,7 +7,11 @@ module.exports = {
     }
   },
   test: {
-
+    root: require('path').normalize(__dirname + '/..'),
+    db: 'mongodb://localhost/eveforeman_test',
+    app: {
+      secret: 'testing'
+    }
   },
   production: {
 

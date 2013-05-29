@@ -1,6 +1,6 @@
 var express = require('express')
   , mongoStore = require('connect-mongo')(express)
-  , helpers = require('view-helpers')
+  , moment = require('moment')
 
 module.exports = function (app, config) {
   app.set('showStackError', true)
@@ -11,8 +11,15 @@ module.exports = function (app, config) {
   app.set('view engine', 'jade')
 
   app.configure(function () {
-    // dynamic helpers
-    app.use(helpers('eveforeman'))
+    // helpers
+    app.helpers({
+      date: function(date){
+        moment(date).format('YYYY-MM-DD hh:mm:ss');
+      },
+      fromNow: function(date){
+        moment(date).fromNow()
+      }
+    })
 
     // bodyParser should be above methodOverride
     app.use(express.bodyParser())
@@ -35,11 +42,11 @@ module.exports = function (app, config) {
     app.use(express.favicon())
 
     // custom error handler
-    app.use(function (err, req, res, next) {
-      if (~err.message.indexOf('not found')) return next()
-      console.error(err.stack)
-      res.status(500).render('500')
-    })
+    // app.use(function (err, req, res, next) {
+    //   if (~err.message.indexOf('not found')) return next()
+    //   console.error(err.stack)
+    //   res.status(500).render('500')
+    // })
 
     app.use(function (req, res, next) {
       res.status(404).render('404', { url: req.originalUrl })

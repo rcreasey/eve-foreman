@@ -1,5 +1,5 @@
 {
-  "name": "eveforeman.com",
+  "name": "eve-foreman",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -17,7 +17,8 @@
     "mongoose": "3.6.x",
     "connect-mongo": "0.3.x",
     "async": "0.2.8",
-    "view-helpers": "0.0.x"
+    "underscore": "1.4.x",
+    "moment": "2.0.x"
   },
   "devDependencies": {
     "nodemon": "0.7.x",

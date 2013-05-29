@@ -1,0 +1,35 @@
+extends ../layouts/operations
+
+mixin field(type, name, label)
+  .control-group
+    label.control-label #{label}:
+    .controls
+      input(type=type, name='user[#{name}]', value=user[name])
+
+
+block content
+  block preamble
+  - var action = '/ops'
+  if (!operation.isNew)
+    - action += '/' + operation.id
+
+  if (typeof errors !== 'undefined')
+    .fade.in.alert.alert-block.alert-error
+      a.close(data-dismiss="alert", href="javascript:void(0)") x
+      ul
+        each error in errors
+          li= error.type
+
+  form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
+    if (!operation.isNew)
+      input(type="hidden", name="id", value=operation.id)
+      input(type="hidden", name="_method", value="PUT")
+
+    .control-group
+      label.control-label(for='system') Solar System
+      .controls
+        input#system(type='text', name="system", value=operation.system, placeholder='Enter the solar system')
+        span.help-block What system is this operation taking place in?
+
+    .form-actions
+      button.btn.btn-primary(type='submit') Save changes
