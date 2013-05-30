@@ -1,5 +1,33 @@
 body
   font-size 14px
 
+.jumbotron
+  .container
+    position relative
+    z-index 2
+  &:after
+    content ''
+    display block
+    position absolute
+    top 0
+    right 0
+    bottom 0
+    left 0
+    background url('http://img440.imageshack.us/img440/1433/20101001233129.jpg') repeat center center
+    opacity .4
+
+.masthead
+
+  h1
+    font-size 120px
+    line-height 1
+    letter-spacing -2px
+  p
+    font-size 40px
+    font-weight 200
+    line-height 1.25
+
+
+
 #footer
   min-height 50px
