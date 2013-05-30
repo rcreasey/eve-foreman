@@ -1,13 +1,13 @@
 ul.nav.nav-list
-  li.nav-header Operations Management
+  li.nav-header Operations
   - if (path == '/ops')
     li
       a(href='/ops/new') Registration
   - else
     li
       a(href='/ops')
-        i.icon-chevron-left
-        | Back
+        i.icon-th-list
+        | Manifest
     - if (operation && !operation.isNew)
       li
         a(href='/ops/' + operation.id + '/edit')
