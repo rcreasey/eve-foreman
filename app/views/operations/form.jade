@@ -28,8 +28,22 @@ block content
     .control-group
       label.control-label(for='system') Solar System
       .controls
-        input#system(type='text', name="system", value=operation.system, placeholder='Enter the solar system')
+        input#system(type='text', name="system", value=operation.system, placeholder='Enter the solar system', autocomplete='off')
         span.help-block What system is this operation taking place in?
+        :coffeescript
+          populateSystems = ->
+            $.getJSON "/data/systems.json", (systems) ->
+              system_names = []
+
+              for name of systems
+                system_names.push systems[name]
+
+              $('#system').typeahead
+                source: system_names
+                items: 8
+
+          $(document).ready ->
+            populateSystems()
 
     .form-actions
       button.btn.btn-primary(type='submit') Save changes
