@@ -15,7 +15,7 @@ module.exports = {
   },
   production: {
     root: require('path').normalize(__dirname + '/..'),
-    db: 'mongodb://foreman:foremaneve@dbh35.mongolab.com:27357/heroku_app15945165',
+    db: process.env.MONGOHQ_URL,
     app: {
       secret: 's3kr3t_34t1ng'
     }
