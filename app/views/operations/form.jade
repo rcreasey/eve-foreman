@@ -1,13 +1,6 @@
-extends ../layouts/operations
+extends layout
 
-mixin field(type, name, label)
-  .control-group
-    label.control-label #{label}:
-    .controls
-      input(type=type, name='user[#{name}]', value=user[name])
-
-
-block content
+block context
   block preamble
   - var action = '/ops'
   if (!operation.isNew)
