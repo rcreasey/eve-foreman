@@ -23,20 +23,31 @@ block context
       .controls
         input#system(type='text', name="system", value=operation.system, placeholder='Enter the solar system', autocomplete='off')
         span.help-block What system is this operation taking place in?
-        :coffeescript
-          populateSystems = ->
-            $.getJSON "/data/systems.json", (systems) ->
-              system_names = []
+      :coffeescript
+        populateSystems = ->
+          $.getJSON "/data/systems.json", (systems) ->
+            system_names = []
 
-              for name of systems
-                system_names.push systems[name]
+            for name of systems
+              system_names.push systems[name]
 
-              $('#system').typeahead
-                source: system_names
-                items: 8
+            $('#system').typeahead
+              source: system_names
+              items: 8
 
-          $(document).ready ->
-            populateSystems()
+        $ ->
+          populateSystems()
+
+    .control-group
+      label.control-label(for='starts_at') Start Time
+      .controls
+        span.input-append.date.starts_at
+          input#starts_at(type='text', name="starts_at", value=formatDatetime(operation.starts_at), size='16', data-format='MM/dd/yy hh:mm', data-pickSeconds=false)
+          span.add-on
+            i(data-time-icon='icon-time', form-date-icon='icon-calendar')
+      :coffeescript
+        $ ->
+          $('.date.starts_at').datetimepicker()
 
     .form-actions
       button.btn.btn-primary(type='submit') Save changes

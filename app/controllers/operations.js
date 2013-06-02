@@ -39,14 +39,11 @@ exports.index = function(req, res) {
 }
 
 // GET /ops/:id
-exports.show = function(req, res) {
+exports.show = function(req, res){
   res.locals.path = req.path
-  Operation.load(req.params.id, function(err, operation) {
-    if (err) return res.render('404')
-    res.render('operations/show', {
-      title: 'Operation',
-      operation: operation
-    })
+  res.render('operations/show', {
+    title: 'Operation',
+    operation: req.operation
   })
 }
 
@@ -81,12 +78,9 @@ exports.create = function (req, res) {
 // GET /ops/:id/edit
 exports.edit = function (req, res) {
   res.locals.path = req.path
-  Operation.load(req.params.id, function(err, operation) {
-    if (err) return res.render('404')
-    res.render('operations/edit', {
-      title: 'Edit Operation',
-      operation: operation
-    })
+  res.render('operations/edit', {
+    title: 'Edit Operation',
+    operation: req.operation
   })
 }
 

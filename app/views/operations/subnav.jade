@@ -14,9 +14,11 @@ ul.nav.nav-list
           i.icon-edit
           | Edit Operation
     - if (path.indexOf('edit') !== -1)
-      form(action='/ops/' + operation.id, method='post')
-        input(type='hidden', name='_method', value='DELETE')
-        li
-          a(href="#", onclick="$(this).parents('form:first').submit()")
-            i.icon-trash
-            | Delete Operation
+      li
+        a(href="#", onclick="$(this).next('form:first').submit()")
+          i.icon-trash
+          | Delete Operation
+        form(action='/ops/' + operation.id, method='post')
+          input(type='hidden', name='_method', value='DELETE')
+
+
